@@ -37,3 +37,13 @@ function controladorGet (peticion, respuesta) {
 app.listen( 8000, function () {
     console.log("Express traballando...");
 })
+
+
+//Daniel
+const indice = tarefas.findIndex( estaTarefa => 
+    estaTarefa.id
+     === 
+    peticion.body.id
+     ) 
+
+     Daniel dice:tarefas.splice(indice,1,peticion.body) 
