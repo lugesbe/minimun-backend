@@ -19,31 +19,47 @@ let tarefas = [
 // Definicions de endpoints
 app.post("/tarefas/", controladorPost)
 app.get("/tarefas/", controladorGet)
+app.put("/tarefas/", controladorPut)
+app.delete ("/tarefas/", controladorDelete)
 
 // Controladores executados polos endpoints
 function controladorPost (peticion, respuesta) {
     tarefas.push(peticion.body)
     respuesta.status(201)
-    respuesta.send("Ok")
+    respuesta.send("Ok") //respuesta de insomnisa
 }
 
 function controladorGet (peticion, respuesta) {
     respuesta.status(200)
-    respuesta.send(JSON.stringify(tarefas))
+    respuesta.send(JSON.stringify(tarefas)) //respuesta de insomnisa
 }
 
+
+function controladorPut (peticion,respuesta){
+    let posicion = tarefas.findIndex( 
+        function (estaTarefa) { 
+            const tarefaBuscada =  estaTarefa.id === peticion.body.id
+            return tarefaBuscada
+         } 
+          ) 
+        tarefas.splice(posicion, 1, peticion.body) 
+        respuesta.status(200)
+        respuesta.send ("Listo!")
+}
+
+function controladorDelete (peticion,respuesta){
+    let posicion = tarefas.findIndex( 
+    function (estaTarefa) { 
+        const tarefaBuscada =  estaTarefa.id === peticion.body.id
+        return tarefaBuscada
+     } 
+      )
+      tarefas.splice(posicion, 1) 
+      respuesta.status(200)
+      respuesta.send ("borrada!")
+}
 
 // Posta en marcha da aplicación de Express
 app.listen( 8000, function () {
     console.log("Express traballando...");
 })
-
-
-//Daniel
-const indice = tarefas.findIndex( estaTarefa => 
-    estaTarefa.id
-     === 
-    peticion.body.id
-     ) 
-
-     Daniel dice:tarefas.splice(indice,1,peticion.body) 
