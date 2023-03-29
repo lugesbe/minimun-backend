@@ -1,10 +1,40 @@
 import express from "express"
 import cors from "cors"
+import { Sequelize, DataTypes }  from 'sequelize';
 
 // Creamos e configuramos a aplicación de Express
 const app = express()
 app.use(cors()) // Aceptar peticións desde outras URL
 app.use(express.json()) // Manexar os datos recibidos como JSON
+
+
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './database.sqlite'
+});
+
+const Tarefa = sequelize.define('Tarefa', {
+    // id: Sequelize se ocupa del id de los modelos por nosotros.
+    descripcion: {
+      type: DataTypes.STRING
+    },
+    completada: {
+      type: DataTypes.BOOLEAN
+    }
+  });
+  await sequelize.sync({ alter: true })
+
+  const Tarefa = sequelize.define('Tarefa', {
+    // id: Sequelize se ocupa del id de los modelos por nosotros.
+    descripcion: {
+      type: DataTypes.STRING
+    },
+    completada: {
+      type: DataTypes.BOOLEAN
+    }
+  });
+
+  await sequelize.sync({ alter: true })
 
 // O noso almacen de datos.
 // Normalmente en lugar do array atoparemos unha base de datos.
