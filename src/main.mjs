@@ -24,17 +24,7 @@ const Tarefa = sequelize.define('Tarefa', {
   });
   await sequelize.sync({ alter: true })
 
-  const Tarefa = sequelize.define('Tarefa', {
-    // id: Sequelize se ocupa del id de los modelos por nosotros.
-    descripcion: {
-      type: DataTypes.STRING
-    },
-    completada: {
-      type: DataTypes.BOOLEAN
-    }
-  });
 
-  await sequelize.sync({ alter: true })
 
 // O noso almacen de datos.
 // Normalmente en lugar do array atoparemos unha base de datos.
